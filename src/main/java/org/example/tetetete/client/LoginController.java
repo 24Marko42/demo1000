@@ -57,6 +57,8 @@ public class LoginController {
     private void login() {
         String username = usernameField.getText();
         String password = passwordField.getText();
+        // Здесь можно реализовать логику аутентификации
+        // Например, можно использовать UserService для аутентификации
         if (authenticate(username, password)) {
             ChatClient.setUsername(username); // Сохраняем имя пользователя
             openChatWindow(); // Открываем окно чата после успешного входа
@@ -70,14 +72,7 @@ public class LoginController {
     private boolean authenticate(String username, String password) {
         // Здесь можно реализовать логику аутентификации
         // Например, можно использовать UserService для аутентификации
-        UserService userService = new UserService();
-        try {
-            userService.authenticate(username, password);
-            return true;
-        } catch (InvalidCredentialsException e) {
-            logger.error("Invalid credentials", e);
-            return false;
-        }
+        return !username.isEmpty() && !password.isEmpty();
     }
 
     // Метод для открытия окна чата

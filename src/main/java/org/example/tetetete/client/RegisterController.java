@@ -9,8 +9,6 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
-import org.example.tetetete.common.exception.UserAlreadyExistsException;
-import org.example.tetetete.server.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,6 +59,7 @@ public class RegisterController {
         String password = passwordField.getText();
         if (register(username, password)) {
             ChatClient.setUsername(username); // Сохраняем имя пользователя
+            ChatClient.setPassword(password); // Сохраняем пароль
             openLoginWindow(); // Открываем окно логина после успешной регистрации
             primaryStage.close(); // Закрываем окно регистрации
         } else {
@@ -72,14 +71,7 @@ public class RegisterController {
     private boolean register(String username, String password) {
         // Здесь можно реализовать логику регистрации
         // Например, можно использовать UserService для регистрации
-        UserService userService = new UserService();
-        try {
-            userService.register(username, password);
-            return true;
-        } catch (UserAlreadyExistsException e) {
-            logger.error("User already exists", e);
-            return false;
-        }
+        return !username.isEmpty() && !password.isEmpty();
     }
 
     // Метод для открытия окна логина

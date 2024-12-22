@@ -13,6 +13,7 @@ import java.io.IOException;
 public class ChatClient extends Application {
     private static final Logger logger = LoggerFactory.getLogger(ChatClient.class);
     private static String username;
+    private static String password;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -42,5 +43,13 @@ public class ChatClient extends Application {
 
     public static String getUsername() {
         return username;
+    }
+
+    public static void setPassword(String password) {
+        ChatClient.password = password;
+    }
+
+    public static String getPassword() {
+        return password;
     }
 }

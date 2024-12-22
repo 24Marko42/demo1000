@@ -35,8 +35,9 @@ public class ClientSocketHandler {
     private void startListening() {
         new Thread(() -> {
             try {
-                // Отправляем имя пользователя на сервер
+                // Отправляем имя пользователя и пароль на сервер
                 out.println(ChatClient.getUsername());
+                out.println(ChatClient.getPassword());
 
                 String message;
                 while ((message = in.readLine()) != null) { // Читаем входящие сообщения в цикле
